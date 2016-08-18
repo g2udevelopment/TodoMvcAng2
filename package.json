@@ -1,7 +1,10 @@
 {
-    "name": "TodoMVC Ang2",
-    "version": "1.0.0",
-    "dependencies": {
+  "name": "angular2-upgrade-todomvc",
+  "version": "1.0.0",
+  "description": "Upgraden van angular 1 todomvc naar angular2-rc5 app",
+  "author": "Gerben van de Wiel",
+  "license": "MIT",
+  "dependencies": {
         
-    }
+  }
 }
