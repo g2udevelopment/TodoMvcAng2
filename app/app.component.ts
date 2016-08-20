@@ -3,9 +3,9 @@ import { Todo } from './model/store';
 
 @Component({
   selector:'todo-app',
-  template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText">
+  template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText" (keyup.enter)="addTodo()">
               <ul class="todo-list">
-              <li *ngFor="#todo of todoStore">
+              <li *ngFor="let todo of todoStore">
               <span>{{todo.title}}</span>
               </li>
             </ul>
@@ -16,7 +16,7 @@ export class AppComponent {
   newTodoText = '';
 
   constructor() {
-
+    this.todoStore = new Array<Todo>();
   }
 
   stopEditing(todo: Todo, editedTitle: string) {

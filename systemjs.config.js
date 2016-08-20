@@ -18,7 +18,8 @@
     'compiler',
     'core',
     'platform-browser',
-    'platform-browser-dynamic'
+    'platform-browser-dynamic',
+    'forms'
   ];
 
     // Individual files (~300 requests):
