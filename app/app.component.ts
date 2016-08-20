@@ -3,6 +3,7 @@ import { Todo } from './model/store';
 
 //1: Template reference var demo.
 //2: Demo binding syntax () en [] ipv. Form binding.
+//3: attribute binding keyup. etc...
 @Component({
   selector:'todo-app',
   template: `<input placeholder="Wat moet er gebeuren?" autofocus="" (input)="newTodoText=$event.target.value" (keyup.enter)="addTodo()">
