@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Todo } from './model/store';
 
+//1: Template reference var demo.
+//2: Demo binding syntax () en [] ipv. Form binding.
 @Component({
   selector:'todo-app',
-  template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText">
+  template: `<input placeholder="Wat moet er gebeuren?" autofocus="" (input)="newTodoText=$event.target.value" (keyup.enter)="addTodo()">
               <ul class="todo-list">
-              <li *ngFor="#todo of todoStore">
+              <li *ngFor="let todo of todoStore">
               <span>{{todo.title}}</span>
               </li>
             </ul>
@@ -16,7 +18,7 @@ export class AppComponent {
   newTodoText = '';
 
   constructor() {
-
+    this.todoStore = new Array<Todo>();
   }
 
   stopEditing(todo: Todo, editedTitle: string) {
