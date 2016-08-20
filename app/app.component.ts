@@ -1,23 +1,24 @@
 import { Component } from '@angular/core';
 import { Todo } from './model/store';
+import { TodoStore } from './service/store';
 //ngModel binding
 //FormsModule
 @Component({
   selector:'todo-app',
   template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText" (keyup.enter)="addTodo()">
               <ul class="todo-list">
-              <li *ngFor="let todo of todoStore">
+              <li *ngFor="let todo of todoStore.todos">
               <span>{{todo.title}}</span>
               </li>
             </ul>
   `
 })
 export class AppComponent {
-  todoStore: Array<Todo>;
+  todoStore: TodoStore;
   newTodoText = '';
 
-  constructor() {
-    this.todoStore = new Array<Todo>();
+  constructor(todoStore: TodoStore) {
+    this.todoStore = todoStore;
   }
 
   stopEditing(todo: Todo, editedTitle: string) {
@@ -34,7 +35,7 @@ export class AppComponent {
     todo.editing = false;
 
     if (editedTitle.length === 0) {
-      return this.todoStore.splice(this.todoStore.indexOf(todo),1);
+      return this.todoStore.remove(todo);
     }
 
     todo.title = editedTitle;
@@ -55,7 +56,7 @@ export class AppComponent {
 
   addTodo() {
     if (this.newTodoText.trim().length) {
-      this.todoStore.push(new Todo(this.newTodoText));
+      this.todoStore.add(this.newTodoText);
       this.newTodoText = '';
     }
   }
