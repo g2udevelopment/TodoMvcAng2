@@ -5,6 +5,7 @@ import { TodoStore } from './service/store';
 //FormsModule
 @Component({
   selector:'todo-app',
+  providers: [TodoStore],
   template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText" (keyup.enter)="addTodo()">
               <ul class="todo-list">
               <li *ngFor="let todo of todoStore.todos">
