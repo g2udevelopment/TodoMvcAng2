@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo } from './model/store';
-
+//ngModel binding
+//FormsModule
 @Component({
   selector:'todo-app',
   template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText" (keyup.enter)="addTodo()">
