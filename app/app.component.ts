@@ -11,7 +11,6 @@ import { TodoStore } from './service/store';
 export class AppComponent {
   todoStore: TodoStore;
   newTodoText = '';
-  @ViewChild('editedtodo') input1ElementRef;
 
   constructor(todoStore: TodoStore, private _renderer:Renderer) {
     this.todoStore = todoStore;
@@ -39,7 +38,7 @@ export class AppComponent {
 
   editTodo(todo: Todo) {
     todo.editing = true;
-    setTimeout( _ => this._renderer.invokeElementMethod(this.input1ElementRef.nativeElement,'focus',[]));
+    
   }
 
   removeCompleted() {
