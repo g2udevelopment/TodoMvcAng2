@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer } from '@angular/core';
 import { Todo } from './model/store';
 import { TodoStore } from './service/store';
 //ngModel binding
@@ -6,19 +6,14 @@ import { TodoStore } from './service/store';
 @Component({
   selector:'todo-app',
   providers: [TodoStore],
-  template: `<input placeholder="Wat moet er gebeuren?" autofocus="" [(ngModel)]="newTodoText" (keyup.enter)="addTodo()">
-              <ul class="todo-list">
-              <li *ngFor="let todo of todoStore.todos">
-              <span>{{todo.title}}</span>
-              </li>
-            </ul>
-  `
+  templateUrl: 'app/app.html'
 })
 export class AppComponent {
   todoStore: TodoStore;
   newTodoText = '';
+  @ViewChild('editedtodo') input1ElementRef;
 
-  constructor(todoStore: TodoStore) {
+  constructor(todoStore: TodoStore, private _renderer:Renderer) {
     this.todoStore = todoStore;
   }
 
@@ -44,15 +39,19 @@ export class AppComponent {
 
   editTodo(todo: Todo) {
     todo.editing = true;
+    setTimeout( _ => this._renderer.invokeElementMethod(this.input1ElementRef.nativeElement,'focus',[]));
   }
 
   removeCompleted() {
+    this.todoStore.removeCompleted();
   }
 
   toggleCompletion(todo: Todo) {
+    this.todoStore.toggleCompletion(todo);
 	}
 
 	remove(todo: Todo){
+    this.todoStore.remove(todo);
 	}
 
   addTodo() {
